@@ -2,7 +2,7 @@
 
 Este projeto é um **sistema de cadastro simples desenvolvido em Python**, criado com o objetivo de **treinamento, aprendizado e prática de lógica de programação**, validações e organização de código.
 
-O sistema permite realizar operações básicas de CRUD (Create, Read, Update, Delete).
+O sistema permite realizar operações básicas de CRUD.
 
 ---
 
@@ -16,6 +16,8 @@ O sistema permite realizar operações básicas de CRUD (Create, Read, Update, D
 - Nome (apenas letras)
 - Idade (valores válidos entre 1 e 120)
 - Email (formato básico)
+
+---
 
 ## Tecnologias Utilizadas
 
