@@ -11,21 +11,21 @@ def cadastrar_pessoa():
             print("|O nome deve possuir apenas letras|")
 
     while True:
-        try:
-            idade = int(input("Idade: "))
-            if 0 < idade <= 120:
-                break
-            else:
-                print("|Digite uma idade válida!|")
-        except ValueError:
-            print("|Digite apenas números!|")
+        entrada = input("Idade: ")
+        idade_validada = validar_idade(entrada)
+
+        if idade_validada is not None:
+            idade = idade_validada
+            break
+        else:
+            print("|Digite uma idade válida!|")
 
     while True:
         email = input("Email: ")
-        if "@" not in email or "." not in email:
-            print("|Email inválido!|")
-        else:
+        if validar_email(email):
             break
+        else:
+            print("|Email inválido!|")
 
     pessoa = {
         "nome": nome,
@@ -98,26 +98,47 @@ def editar_cadastro():
 
         while True:
             nova_idade = input(f"Idade ({pessoa['idade']}): ")
+
             if not nova_idade:
                 break
-            try:
-                nova_idade = int(nova_idade)
-                if 1 <= nova_idade <= 120:
-                    pessoa["idade"] = nova_idade
-                    break
-                else:
-                    print("|Digite uma idade válida!|")
-            except ValueError:
-                print("|Digite apenas números!|")
 
-        novo_email = input(f"Email ({pessoa['email']}): ")
-        if novo_email:
-            pessoa["email"] = novo_email
+            idade_validada = validar_idade(nova_idade)
+
+            if idade_validada is not None:
+                pessoa["idade"] = idade_validada
+                break
+            else:
+                print("|Digite uma idade válida!|")
+
+        while True:
+            novo_email = input(f"Email ({pessoa['email']}): ")
+
+            if not novo_email:
+                break
+
+            if validar_email(novo_email):
+                pessoa["email"] = novo_email
+                break
+            else:
+                print("|Email inválido!|")
 
         print("\n|Cadastro atualizado com sucesso!|\n")
 
     except ValueError:
         print("\n|Digite um número válido!|\n")
+
+def validar_idade(valor):
+    try:
+        idade = int(valor)
+        if 1 <= idade <= 120:
+            return idade
+        else:
+            return None
+    except ValueError:
+        return None
+
+def validar_email(email):
+    return "@" in email and "." in email
 
 while True:
     opcao = input(
