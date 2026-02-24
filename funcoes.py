@@ -1,4 +1,18 @@
+import json
+
 cadastros = []
+
+def salvar_cadastros():
+    with open("cadastros.json", "w") as arquivo:
+        json.dump(cadastros, arquivo, indent=4)
+
+def carregar_cadastros():
+    global cadastros
+    try:
+        with open("cadastros.json", "r") as arquivo:
+            cadastros = json.load(arquivo)
+    except FileNotFoundError:
+        cadastros = []
 
 def cadastrar_pessoa():
 
@@ -34,6 +48,7 @@ def cadastrar_pessoa():
     }
 
     cadastros.append(pessoa)
+    salvar_cadastros()
     print("\n|Cadastro realizado com sucesso!|\n")
 
 def remover_cadastro():
@@ -48,6 +63,7 @@ def remover_cadastro():
 
         if 1 <= escolha <= len(cadastros):
                 removido = cadastros.pop(escolha - 1)
+                salvar_cadastros()
                 print(f"\n|Cadastro de {removido['nome']} removido com sucesso!|\n")
         else:
                 print('\n|Número inválido!|\n')
@@ -58,7 +74,7 @@ def remover_cadastro():
 
 def listar_cadastros():
     if not cadastros:
-        print('|A lista está vazia!|')
+        print('\n|A lista está vazia!|\n')
     else:
         print("\n|Lista de pessoas cadastradas|")
         print('=' * 50)
@@ -90,7 +106,8 @@ def editar_cadastro():
             if not novo_nome:
                 break        
 
-            elif novo_nome.replace(" ", "").isalpha():
+            if novo_nome.replace(" ", "").isalpha():
+                pessoa["nome"] = novo_nome
                 break
             else:
                 print("|O nome deve possuir apenas letras|")
@@ -122,6 +139,7 @@ def editar_cadastro():
             else:
                 print("|Email inválido!|")
 
+        salvar_cadastros()
         print("\n|Cadastro atualizado com sucesso!|\n")
 
     except ValueError:
