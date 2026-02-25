@@ -28,8 +28,6 @@ O sistema permite realizar operações completas de CRUD e gerar relatórios aut
 - Estrutura de repetição e validação
 - Organização em múltiplos arquivos
 - Geração automatizada de relatórios com `openpyxl`
-- Uso de `if __name__ == "__main__"`
-- Separação de responsabilidades (SRP)
 
 ---
 
@@ -49,4 +47,3 @@ O sistema permite realizar operações completas de CRUD e gerar relatórios aut
 2. Execute `main.py`
 3. Para gerar relatório, execute `gerar_relatorio.py`
 
-## 📂 Estrutura do Projeto
