@@ -11,8 +11,11 @@ def carregar_cadastros():
     try:
         with open("cadastros.json", "r") as arquivo:
             cadastros = json.load(arquivo)
+            return cadastros
+        
     except FileNotFoundError:
         cadastros = []
+        return []
 
 def cadastrar_pessoa():
 

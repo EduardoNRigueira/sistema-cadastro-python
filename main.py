@@ -2,6 +2,7 @@ from funcoes import *
 
 carregar_cadastros()
 
+
 while True:
     opcao = input(
     "1. Cadastrar pessoa\n"
