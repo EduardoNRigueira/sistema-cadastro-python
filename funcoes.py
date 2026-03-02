@@ -45,9 +45,9 @@ def cadastrar_pessoa():
             print("|Email inválido!|")
 
     pessoa = {
-        "nome": nome,
-        "idade": idade,
-        "email": email
+        "Nome": nome,
+        "Idade": idade,
+        "Email": email
     }
 
     cadastros.append(pessoa)
